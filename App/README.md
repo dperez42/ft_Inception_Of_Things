@@ -1,4 +1,4 @@
-docker build -t alpine_image . > /dev/null
+docker build -t simple-nginx . 
 docker run -ti -p 8081:80 alpine_image
 docker run -ti -e "APP_NAME=app1" -p 8080:80 simple-nginx
 
@@ -9,9 +9,9 @@ Username: danipe1970
 Password: 
 Login Succeeded
 
-docker tag simple-nginx danipe1970/k3_helloworld:v1
+docker tag simple-nginx danipe1970/app1:v1
 
-docker push danipe1970/k3_helloworld:v1
+docker push danipe1970/app1:v1
 
 printenv | less
 echo $USER

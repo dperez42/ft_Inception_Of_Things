@@ -14,9 +14,14 @@ This project consists of multiple parts.
 
 All running in a Virtual Machine
 
-### Virtual Machine configuration.
+# Virtual Machine:
 
-to nested virtualization
+### configuration.
+
+ISO: https://ubuntu.com/download/desktop/thank-you?version=22.04.3&architecture=amd64
+
+
+to enable nested virtualization
 >VBoxManage modifyvm VM.name --nested-hw-virt on
 
 install Virtual Box
