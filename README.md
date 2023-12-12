@@ -40,57 +40,6 @@ $ ssh -i "<vagranfile-path>/.vagrant/machines/default/virtualbox/private_key" \
 -p 2222 vagrant@127.0.0.1
 Also, it is not required to remove ~/.ssh/known_hosts file. Adding the following option will avoid host fingerprint check: -o UserKnownHostsFile=/dev/null
 
-K3S "https://docs.k3s.io/quick-start" k3s-uninstall.sh k3s-killall.sh
-curl -sfL https://get.k3s.io | sh -
-check:
-> k3s -v
-- Additional utilities will be installed, including kubectl, crictl, ctr, k3s-killall.sh, and k3s-uninstall.sh
-- A kubeconfig file will be written to /etc/rancher/k3s/k3s.yaml and the kubectl installed by K3s will automatically use it
-- The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node. This token will be used for join agents to the cluster
-**clear all deployments/pods/services**
-`kubectl delete --all  pods`
-`k3s kubectl get service -o wide`
-`k3s kubectl delete svc nginx`
-`k3s kubectl delete deployment yourDeploymentNamenginx`
-k3s-killall.sh
-kubectl get deploy
-launch a command in a deployment:
-kubectl exec deploy/mysql-deployment command</br>
-For enter in a 
-kubectl exec -it app1-6967497c59-9bj4n -- sh
-Kill process in deployments
-kubectl exec deploy/nginx-deployment -- pkill nginx
-
-
-CHECKING 
-In SERVER NODE:
-> vagrant ssh dperez-zS
-> kubectl get nodes -o wide
-NAME         STATUS   ROLES                  AGE     VERSION
-dperez-zsw   Ready    <none>                 3m41s   v1.27.7+k3s2
-dperez-zs    Ready    control-plane,master   11m     v1.27.7+k3s2
-> ifconfig eth1
-eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.56.247  netmask 255.255.255.0  broadcast 192.168.56.255
-        ether 08:00:27:ba:5d:db  txqueuelen 1000  (Ethernet)
-        RX packets 215  bytes 39452 (38.5 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 207  bytes 73467 (71.7 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-In AGENT NODE:
-> ifconfig eth1
-eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.56.248  netmask 255.255.255.0  broadcast 192.168.56.255
-        ether 08:00:27:90:45:88  txqueuelen 1000  (Ethernet)
-        RX packets 1036  bytes 539361 (526.7 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 857  bytes 140791 (137.4 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-CHEKING COMUNICATIONS:
-ping -c 5 192.168.56.247
-
-kubectl get all
-curl -H "Host:app2.com" 192.168.56.247
 
 USE NGINX AS INGRESS CONTROLLER
 

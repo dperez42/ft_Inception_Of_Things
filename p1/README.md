@@ -1,6 +1,6 @@
 ## DESCRIPTION:
 
-Launches wit a Vagrantfile 2 VMs (CentOS as operating system) with minimun resources:
+Launches with a Vagrantfile 2 VMs (CentOS as operating system) with minimun resources:
 
 - 1 CPU
 - 512 MB of RAM
@@ -24,6 +24,11 @@ In order to add K3S agent node, run the installation script with the K3S_URL and
 
 Setting the K3S_URL parameter causes the installer to configure K3s as an agent, instead of a server. The K3s agent will register with the K3s server listening at the supplied URL. The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node.
 <img height="250em" src="https://docs.k3s.io/assets/images/how-it-works-k3s-revised-9c025ef482404bca2e53a89a0ba7a3c5.svg"/>
+
+TIPS:
+- disable firewalls in VM.
+- You can sync folder with  the host to share information like node-token.
+
 ## USE:
 
 > Vagrant up
