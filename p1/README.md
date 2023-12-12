@@ -27,7 +27,7 @@ Setting the K3S_URL parameter causes the installer to configure K3s as an agent,
 
 TIPS:
 - disable firewalls in VM.
-- You can sync folder with  the host to share information like node-token.
+- You can sync folder with  the host to share information like p.e. node-token.
 
 ## USE:
 

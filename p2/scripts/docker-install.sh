@@ -12,5 +12,5 @@ printf "\e[1;36m🐳  Starting Docker Daemon \n\e[0m"
 sudo systemctl start docker
 printf "\e[1;36m🐳  Enable the Docker daemon on the system boot to start at the boot time \n\e[0m"
 sudo systemctl enable docker
-echo "\e[1;36m🐳 : Docker installed and started \n\e[0m"
+printf "\e[1;36m🐳 : Docker installed and started \n\e[0m"
 docker -v
