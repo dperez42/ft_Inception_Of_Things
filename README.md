@@ -20,6 +20,12 @@ All running in a Virtual Machine
 
 ISO: https://ubuntu.com/download/desktop/thank-you?version=22.04.3&architecture=amd64
 
+NAME: Ubuntu22lts
+RAM: 2048
+Procesares: 2
+Memoría de video: 128MB
+Red: Adaptador puente
+Almacenamiento: 30 GB
 
 to enable nested virtualization
 >VBoxManage modifyvm VM.name --nested-hw-virt on
