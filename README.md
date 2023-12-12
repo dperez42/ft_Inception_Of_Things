@@ -12,7 +12,9 @@ This project consists of multiple parts.
 
 >The bonus part synchronizes gitlab repository and kubernetes' running app via gitlab CI/CD pipeline and argo-cd's manual sync
 
-Create VM
+All running in a Virtual Machine
+
+### Virtual Machine configuration.
 
 to nested virtualization
 >VBoxManage modifyvm VM.name --nested-hw-virt on
