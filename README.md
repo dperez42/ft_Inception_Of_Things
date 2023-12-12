@@ -7,8 +7,8 @@ to nested virtualization
 >VBoxManage modifyvm VM.name --nested-hw-virt on
 
 install Virtual Box
-sudo apt-get install virtualbox-ext-pack
-sudo apt instal virtualbox -y
+do apt-get install virtualbox-ext-pack
+sudo apt-get install virtualbox -y
 
 check with
 VBoxManage --version
@@ -40,13 +40,26 @@ $ ssh -i "<vagranfile-path>/.vagrant/machines/default/virtualbox/private_key" \
 -p 2222 vagrant@127.0.0.1
 Also, it is not required to remove ~/.ssh/known_hosts file. Adding the following option will avoid host fingerprint check: -o UserKnownHostsFile=/dev/null
 
-K3S "https://docs.k3s.io/quick-start"
+K3S "https://docs.k3s.io/quick-start" k3s-uninstall.sh k3s-killall.sh
 curl -sfL https://get.k3s.io | sh -
 check:
 > k3s -v
 - Additional utilities will be installed, including kubectl, crictl, ctr, k3s-killall.sh, and k3s-uninstall.sh
 - A kubeconfig file will be written to /etc/rancher/k3s/k3s.yaml and the kubectl installed by K3s will automatically use it
 - The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node. This token will be used for join agents to the cluster
+**clear all deployments/pods/services**
+`kubectl delete --all  pods`
+`k3s kubectl get service -o wide`
+`k3s kubectl delete svc nginx`
+`k3s kubectl delete deployment yourDeploymentNamenginx`
+k3s-killall.sh
+kubectl get deploy
+launch a command in a deployment:
+kubectl exec deploy/mysql-deployment command</br>
+For enter in a 
+kubectl exec -it app1-6967497c59-9bj4n -- sh
+Kill process in deployments
+kubectl exec deploy/nginx-deployment -- pkill nginx
 
 ADDING AGENTS
 To install additional agent nodes and add them to the cluster, run the installation script with the K3S_URL and K3S_TOKEN environment variables. Here is an example showing how to join an agent:
@@ -80,6 +93,31 @@ eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 CHEKING COMUNICATIONS:
 ping -c 5 192.168.56.247
+
+kubectl get all
+curl -H "Host:app2.com" 192.168.56.247
+
+USE NGINX AS INGRESS CONTROLLER
+
+https://kubernetes.github.io/ingress-nginx/ 
+
+$ kubectl get -n kube-system svc | grep traefik
+traefik          LoadBalancer   10.43.199.240   192.168.2.248   80:30576/TCP,443:31861/TCP   22h
+$ curl http://192.168.2.248:30576  # What is this?
+404 page not found
+$ kubectl get ingresses -A
+No resources found
+# printenv
+APP4_SERVICE_PORT_80_TCP=tcp://10.43.2.125:80
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_PORT=tcp://10.43.0.1:443
+HOSTNAME=app1-6967497c59-9bj4n
+APP1_SERVICE_SERVICE_PORT_HTTP=80
+APP2_SERVICE_SERVICE_PORT_HTTP=80
+APP3_SERVICE_SERVICE_PORT_HTTP=80
+HOME=/root
+APP4_SERVICE_SERVICE_PORT_HTTP=80
+APP1_SERVICE_SERVICE_HOST=1
 
 ERROR vagrant
 Error: 

@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# the first two lines are modeling for vim or emacs in case you are using them
+# read more : https://vim.fandom.com/wiki/Modeline_magic and http://www.gnu.org/software/emacs/manual/html_node/emacs/Choosing-Modes.html
+
+# master config
+SERVER_NAME = 'dperez-zS' # Name of the Virtual Machine
+SERVER_IP = '192.168.56.247' # Ip in your network assigned to the virtual machine, check ip availables in 42 school: 192.168.42.110'
+
+# common config
+MEM = 1024	# Ram memory 
+CPU = 1		# Number of processors
+BOX = "generic/centos8" # Image of virtual machine p.e. generic/alpine312 centos/8,....
+#BOX_URL = "https://app.vagrantup.com/centos/boxes/8/versions/2011.0/providers/virtualbox.box"
+BOX_AUTO_UPDATE = false # disable update of image
+
+# disable firewall so we can have direct ssh access without need to copy our ssh public key to the machine 
+# !!! (NOT RECOMMENDED , USE THE SSH KEYS METHOD IN PRODUCTION ENV, THIS IS ONLY FOR SCHOOL PRACTICING PURPOSE ) !!!
+
+Vagrant.configure("2") do |config|
+	# General configuration
+	config.vm.box = BOX
+	#config.vm.box_url = BOX_URL
+	config.vm.box_check_update = BOX_AUTO_UPDATE
+    config.ssh.forward_agent = true
+    config.ssh.insert_key = false
+    config.vm.provision "shell", path: "scripts/firewalld-disable.sh"  # Run script for disable firewall
+	config.vm.provision "shell", path: "scripts/docker-install.sh"		# Run script to install docker CE
+    #config.vm.provision "shell", path: "scripts/somescript.sh", args: [arg1, arg2, ...]		# example
+	
+  
+	config.vm.provider "virtualbox" do |v|
+		v.memory = MEM
+		v.cpus = CPU
+        # is like VboxManage command of virtual box for configuration
+		v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]	# it will cause the NAT gateway to accept DNS traffic from the guest but the gateway will read (i.e. parse) the query and use the host's operating system APIs to resolve it, in the network adapter "1"
+		v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]			# VirtualBox's NAT gateway will accept DNS traffic from the guest and forward it to the resolver used by the host. It will solely act as a network-layer proxy. Only DNS traffic sent to the gateway IP will be redirected, it will not intercept DNS traffic sent to other IPs. Make sure your guest is using your gateway IP (e.g. 10.0.2.2) as resolver (this should work out of the box if your guest does DHCP). in network adapter "1"
+        #v.customize ["modifyvm", :id, "--nested-hw-virt", "on"] 		# Enable virtualization VT-x/AMD-V anidada
+	end
+
+	config.vm.define SERVER_NAME do |master|
+		# Configuration of each VM
+		master.vm.hostname = SERVER_NAME
+		master.vm.network "private_network", ip: SERVER_IP, hostname: true
+		master.vm.synced_folder ".", "/vagrant", type: "virtualbox"		# Links directories from Host -> Virtual Machine 
+        #master.vm.provision "shell", privileged: true, path: "scripts/k3s-install-server.sh", args: [SERVER_IP]
+
+		master.vm.provider "virtualbox" do |v|
+			v.name = SERVER_NAME
+		end
+	end
+end
