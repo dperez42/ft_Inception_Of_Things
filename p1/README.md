@@ -36,7 +36,7 @@ TIPS:
 ## CHEATSHEET:
 Vagrant comands:
 
-to enter vis SSH
+to enter via SSH
 
 > vagrant ssh vm_name
 

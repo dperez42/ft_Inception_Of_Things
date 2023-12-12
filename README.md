@@ -51,29 +51,5 @@ $ curl http://192.168.2.248:30576  # What is this?
 404 page not found
 $ kubectl get ingresses -A
 No resources found
-# printenv
-APP4_SERVICE_PORT_80_TCP=tcp://10.43.2.125:80
-KUBERNETES_SERVICE_PORT=443
-KUBERNETES_PORT=tcp://10.43.0.1:443
-HOSTNAME=app1-6967497c59-9bj4n
-APP1_SERVICE_SERVICE_PORT_HTTP=80
-APP2_SERVICE_SERVICE_PORT_HTTP=80
-APP3_SERVICE_SERVICE_PORT_HTTP=80
-HOME=/root
-APP4_SERVICE_SERVICE_PORT_HTTP=80
-APP1_SERVICE_SERVICE_HOST=1
 
-ERROR vagrant
-Error: 
-    Error: dyld: Symbol not found: _iconv
-    Referenced from: /usr/lib/libcups.2.dylib
-    Expected in: /opt/vagrant/embedded/lib/libiconv.2.dylib
-    in /usr/lib/libcups.2.dylib
-Solution:
-        Just find this three files inside /opt/vagrant/embedded/lib/ directory:
-            libiconv.2.dylib
-            libxml2.2.dylib
-            libxslt.1.dylib
-        And remove them or rename to _....dylib
-Error:
 delete vm from /Users/daniel/VirtualBox VMs
