@@ -1,6 +1,18 @@
 ## DESCRIPTION:
 
-Launches 2 VMs containing K3S (a lightweight kubernetes https://docs.k3s.io/quick-start), one in server mode and the other in agent mode, with Vagrant.
+Launches wit a Vagrantfile 2 VMs (CentOS as operating system) with minimun resources:
+
+- 1 CPU
+- 512 MB of RAM
+- Enable the natdnsproxy1 option.
+- Enable the natdnshostresolver1 option.
+
+containing K3S (a lightweight kubernetes https://docs.k3s.io/quick-start):
+
+- one in server mode, dedicated IP on the eth1 interface 192.168.42.110
+- the other in agent mode, dedicated IP on the eth1 interface 192.168.42.110
+
+NOTE: Choose ips avalible in your network
 
 K3S (a lightweight kubernetes) to install in server mode
 
@@ -11,6 +23,10 @@ In order to add K3S agent node, run the installation script with the K3S_URL and
 > curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
 
 Setting the K3S_URL parameter causes the installer to configure K3s as an agent, instead of a server. The K3s agent will register with the K3s server listening at the supplied URL. The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node.
+<img height="180em" src="https://docs.k3s.io/assets/images/how-it-works-k3s-revised-9c025ef482404bca2e53a89a0ba7a3c5.svg"/>
+## USE:
+
+> Vagrant up
 
 ## CHEATSHEET:
 Vagrant commands:
@@ -83,7 +99,8 @@ Error: dyld: Symbol not found: _iconv
 Solution: 
 
 Just find this three files inside /opt/vagrant/embedded/lib/ directory:
-            libiconv.2.dylib
-            libxml2.2.dylib
-            libxslt.1.dylib
-        And remove them or rename to _....dylib
+
+- libiconv.2.dylib
+- libxml2.2.dylib
+- libxslt.1.dylib
+- And remove them or rename to _....dylib
