@@ -46,7 +46,10 @@ K3S comands:
 kubectl, crictl, ctr, k3s-uninstall.sh k3s-killall.sh
 
 - kubectl get nodes -o wide
+- kubectl get ingresses -A
+- kubectl describe ingress -A
 - kubectl get all
+- kubectl get ns
 - kubectl delete --all  pods`
 - kubectl get service -o wide
 - kubectl delete svc nginx
