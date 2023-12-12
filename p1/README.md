@@ -23,7 +23,7 @@ In order to add K3S agent node, run the installation script with the K3S_URL and
 > curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
 
 Setting the K3S_URL parameter causes the installer to configure K3s as an agent, instead of a server. The K3s agent will register with the K3s server listening at the supplied URL. The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node.
-<img height="180em" src="https://docs.k3s.io/assets/images/how-it-works-k3s-revised-9c025ef482404bca2e53a89a0ba7a3c5.svg"/>
+<img height="250em" src="https://docs.k3s.io/assets/images/how-it-works-k3s-revised-9c025ef482404bca2e53a89a0ba7a3c5.svg"/>
 ## USE:
 
 > Vagrant up
@@ -39,7 +39,9 @@ In server node:
 > kubectl get nodes -o wide
 
 NAME         STATUS   ROLES                  AGE     VERSION
+
 dperez-zsw   Ready    <none>                 3m41s   v1.27.7+k3s2
+
 dperez-zs    Ready    control-plane,master   11m     v1.27.7+k3s2
 
 > ifconfig eth1
