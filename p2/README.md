@@ -24,12 +24,15 @@ TIPS:
 When a client inputs the ip of the server p.e. 192.168.42.110 in his web browser with the HOST app1.com, the server must display the app1. When the HOST app2.com is used, the server must display the app2. Otherwise, the app3 will be selected by default.
 
 Application number 2 has 3 replicas.
+- curl -H "Host:app1.com" 192.168.56.247
+- curl -H "Host:app2.com" 192.168.56.247
+- curl -H "Host:app3.com" 192.168.56.247
+- curl -H "Host:test.com" 192.168.56.247
+- curl -H 192.168.56.247
 
-
-
+Note: Use the correct IP
 
 ## USE:
-
 > Vagrant up
 
 ## CHEATSHEET:
