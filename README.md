@@ -61,11 +61,6 @@ kubectl exec -it app1-6967497c59-9bj4n -- sh
 Kill process in deployments
 kubectl exec deploy/nginx-deployment -- pkill nginx
 
-ADDING AGENTS
-To install additional agent nodes and add them to the cluster, run the installation script with the K3S_URL and K3S_TOKEN environment variables. Here is an example showing how to join an agent:
-> curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
-Setting the K3S_URL parameter causes the installer to configure K3s as an agent, instead of a server. The K3s agent will register with the K3s server listening at the supplied URL. The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node.
-
 
 CHECKING 
 In SERVER NODE:
