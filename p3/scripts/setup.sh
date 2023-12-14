@@ -20,7 +20,7 @@ sudo kubectl rollout status deployment argocd-dex-server -n argocd
 
 echo "################################################################################"
 echo "[wils-APPLICATION] : setup wils application to fetch its config from our github repo"
-sudo kubectl apply -n argocd -f ../confs/app1.yaml
+sudo kubectl apply -n argocd -f ../confs/argocd_app1.yaml
 
 echo "############################################################################"
 echo "############################## ALL SET !! ##################################"
