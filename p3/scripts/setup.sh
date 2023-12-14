@@ -26,3 +26,10 @@ printf "############################## ALL SET !! ##############################
 printf "######################### ARGOCD : localhost:8080 ##########################"
 printf "######################### WIL-APP: localhost:8888 ##########################"
 printf "############################################################################ [0m"
+nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & 
+#user: admin
+echo "url : https://localhost:8080"
+echo "user: admin"
+echo -n "password: "
+sudo kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+echo ""
