@@ -8,8 +8,8 @@ sudo kubectl create namespace dev
 sudo kubectl get namespace
 
 echo "[ARGOCD] : install argocd and wait for pods to rollout..."
-sudo kubectl apply -n argocd -f /p3/p3/confs/argo_install.yaml
-sudo kubectl apply -n argocd -f /p3/p3/confs/argo_ingress.yaml
+sudo kubectl apply -n argocd -f /p3/p3/confs/argocd_install.yaml
+sudo kubectl apply -n argocd -f /p3/p3/confs/argocd_ingress.yaml
 
 echo "################################################################################"
 echo "[ARGOCD-ROLLOUT] : wait for argocd pods to be running"
