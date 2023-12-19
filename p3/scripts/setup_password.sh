@@ -11,10 +11,10 @@ echo $(sudo cat password.log)
 sudo kubectl -n argocd patch secret argocd-secret -p '{"data": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
 sudo rm password.log
 
-printf "\n\e[0;33m############################################################################"
-printf "############################## Password update !! ##################################"
-printf "######################### 🐙 ARGOCD : localhost:8080 ##########################"
-printf "######################### User: admin ######################################"
-printf "######################### Password: $1 ##################################"
-printf "############################################################################ \e[0m"
+printf "\n\e[0;33m####################################"
+printf "########## Password update !! ###########"
+printf "######🐙 ARGOCD : localhost:8080 ########"
+printf "########### User: admin #################"
+printf "########### Password: $1 ################"
+printf "#########################################\e[0m"
 exit 0
