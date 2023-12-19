@@ -27,12 +27,8 @@ nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlo
 
 
 sudo argocd account bcrypt --password admin > password.log
-sudo kubectl -n argocd patch secret argocd-secret \
-    -p '{"stringData": {
-        "admin.password": "$(sudo cat password.log)",
-        "admin.passwordMtime": "'$(date +%FT%T%Z)'"
-    }}'
-sudo mr password.log
+sudo kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
+#sudo rm password.log
 
 printf "\e[0;33m url : https://localhost:8080 \n"
 printf "user: admin"
