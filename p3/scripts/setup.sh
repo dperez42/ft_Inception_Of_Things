@@ -10,7 +10,6 @@ sudo kubectl get namespace
 printf "\e[1;33m[ARGOCD]🐙 : installing K3S.\n\e[0m"
 printf "\e[1;33m[ARGOCD]🐙 : install argocd and wait for pods to rollout...\n\e[0m"
 sudo kubectl apply -n argocd -f ../confs/argocd_install.yaml
-#sudo kubectl apply -n argocd -f ../confs/argocd_ingress.yaml
 
 printf "\e[1;33m[ARGOCD]🐙 : wait for argocd pods to be running \n\e[0m"
 sudo kubectl rollout status deployment argocd-redis -n argocd
@@ -21,7 +20,7 @@ sudo kubectl rollout status deployment argocd-repo-server -n argocd
 printf "\e[1;35m[APPLICATION]🖥 : setup dperez application to fetch its config from our github repo \n\e[0m "
 sudo kubectl -n argocd apply -f ../confs/argocd_app_dperez.yaml
 
-#admin y password default
+# show admin y password default
 #printf "\e[0;33m url : https://localhost:8080 \n"
 #printf "user: admin"
 #echo -n "password: "
@@ -36,14 +35,13 @@ sudo rm password.log
 printf "\e[1;33m[ARGOCD]🐙 : make ARGOCD UI accesible at:\n\e[0m "
 nohup sudo kubectl -n argocd port-forward svc/argocd-server 8080:443 >> argocdlogs.log 2>&1 & 
 #user: admin
-
-printf "\n\e[0;33m############################################################################"
-printf "############################## ALL SET !! ##################################"
-printf "######################### 🐙 ARGOCD : localhost:8080 ##########################"
-printf "######################### User: admin ######################################"
-printf "######################### Password: admin ##################################"
-printf "############################################################################"
-printf "######################### dperez-APP: localhost:80 #########################"
-printf "############################################################################ \e[0m"
-printf "\e[1;33m[wils-APPLICATION] : setup wils application to fetch its config from our github repo  \n\e[0m "
+printf "\e[0;33m#########################################\n"
+printf "########## Password update !! ###########\n"
+printf "######🐙 ARGOCD : localhost:8080 ########\n"
+printf "########### User: admin #################\n"
+printf "########### Password: admin ################\n"
+printf "############################################\n"
+printf "######## dperez-APP: localhost:80 ##########\n"
+printf "#######################################\n\e[0m"
+printf "\e[1;33m[wils-APPLICATION] : setup dperez application to fetch its config from our github repo  \n\e[0m "
 exit 0
