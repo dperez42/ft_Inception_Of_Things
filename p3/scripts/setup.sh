@@ -9,8 +9,8 @@ sudo kubectl create namespace dev
 sudo kubectl get namespace
 printf "\e[1;33m[ARGOCD]🐙 : installing K3S.\n\e[0m"
 printf "\e[1;33m[ARGOCD]🐙 : install argocd and wait for pods to rollout...\n\e[0m"
-sudo kubectl apply -n argocd -f /p3/p3/confs/argocd_install.yaml
-#sudo kubectl apply -n argocd -f /p3/p3/confs/argocd_ingress.yaml
+sudo kubectl apply -n argocd -f ../confs/argocd_install.yaml
+#sudo kubectl apply -n argocd -f ../confs/argocd_ingress.yaml
 
 printf "\e[1;33m[ARGOCD]🐙 : wait for argocd pods to be running \n\e[0m"
 #sudo kubectl rollout status deployment argocd-redis -n argocd
@@ -19,7 +19,7 @@ printf "\e[1;33m[ARGOCD]🐙 : wait for argocd pods to be running \n\e[0m"
 #sudo kubectl rollout status deployment argocd-repo-server -n argocd
 
 printf "\e[1;35m[APPLICATION]🖥 : setup wils application to fetch its config from our github repo \e[0m "
-#sudo kubectl apply -f /p3/p3/confs/argocd_app1.yaml
+#sudo kubectl apply -f ../confs/argocd_app1.yaml
 
 printf "\e[1;33m[ARGOCD]🐙 : make ARGOCD UI accesible n\e[0m "
 nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & 
