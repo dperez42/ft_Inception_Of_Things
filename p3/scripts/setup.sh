@@ -13,10 +13,10 @@ sudo kubectl apply -n argocd -f ../confs/argocd_install.yaml
 #sudo kubectl apply -n argocd -f ../confs/argocd_ingress.yaml
 
 printf "\e[1;33m[ARGOCD]🐙 : wait for argocd pods to be running \n\e[0m"
-#sudo kubectl rollout status deployment argocd-redis -n argocd
-#sudo kubectl rollout status deployment argocd-server -n argocd
-#sudo kubectl rollout status deployment argocd-dex-server -n argocd
-#sudo kubectl rollout status deployment argocd-repo-server -n argocd
+sudo kubectl rollout status deployment argocd-redis -n argocd
+sudo kubectl rollout status deployment argocd-server -n argocd
+sudo kubectl rollout status deployment argocd-dex-server -n argocd
+sudo kubectl rollout status deployment argocd-repo-server -n argocd
 
 printf "\e[1;35m[APPLICATION]🖥 : setup wils application to fetch its config from our github repo \e[0m "
 #sudo kubectl apply -f ../confs/argocd_app1.yaml
