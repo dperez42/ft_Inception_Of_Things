@@ -24,6 +24,16 @@ sudo kubectl -n argocd apply -f ../confs/argocd_app1.yaml
 printf "\e[1;33m[ARGOCD]🐙 : make ARGOCD UI accesible at:\n\e[0m "
 nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & 
 #user: admin
+
+
+sudo argocd account bcrypt --password admin > password.log
+sudo kubectl -n argocd patch secret argocd-secret \
+    -p '{"stringData": {
+        "admin.password": "$(sudo cat password.log)",
+        "admin.passwordMtime": "'$(date +%FT%T%Z)'"
+    }}'
+sudo mr password.log
+
 printf "\e[0;33m url : https://localhost:8080 \n"
 printf "user: admin"
 echo -n "password: "

@@ -78,6 +78,10 @@ k3d cluster stop
 
 https://argo-cd.readthedocs.io/en/stable/getting_started/
 
+argocd login localhost:8080 
+argocd app list
+argocd app get app_argocd_name  
+argocd app sync app_argocd_name
 
 
 argocd app create guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default
