@@ -1,6 +1,8 @@
 ## DESCRIPTION:
 
-Continuos integratión with argos.
+Continuos integration with argos.
+
+
 
 ## VIRTUAL MACHINE:
 

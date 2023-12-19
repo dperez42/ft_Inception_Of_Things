@@ -34,7 +34,7 @@ Setting the K3S_URL parameter causes the installer to configure K3s as an agent,
 <img height="250em" src="https://docs.k3s.io/assets/images/how-it-works-k3s-revised-9c025ef482404bca2e53a89a0ba7a3c5.svg"/>
 
 TIPS:
-- disable firewalls in VMs to run K3.
+- disable firewalls in VMs to run K3s. systemctl disable firewalld --now
 - You can sync a folder with a folder host to share information like p.e. node-token.
 
 ## USE:
