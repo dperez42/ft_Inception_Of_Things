@@ -10,9 +10,6 @@ STORAGE: 30 GB
 NETWORK ADAPTER: bridge
 
 
-sudo apt update 
-sudo apt upgrade -y
-
 sudo apt install git
 git --version
 
