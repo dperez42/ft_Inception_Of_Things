@@ -18,7 +18,7 @@ sudo kubectl rollout status deployment argocd-server -n argocd
 sudo kubectl rollout status deployment argocd-dex-server -n argocd
 sudo kubectl rollout status deployment argocd-repo-server -n argocd
 
-printf "\e[1;35m[APPLICATION]🖥 : setup wils application to fetch its config from our github repo \n\e[0m "
+printf "\e[1;35m[APPLICATION]🖥 : setup dperez application to fetch its config from our github repo \n\e[0m "
 sudo kubectl -n argocd apply -f ../confs/argocd_app_dperez.yaml
 
 #admin y password default
