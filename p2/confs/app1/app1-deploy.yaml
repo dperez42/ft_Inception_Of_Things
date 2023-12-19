@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: danipe1970/app1:latest
+          image: danipe1970/app1:v0
           env:
           - name: MESSAGE
             value: "Hello from app1."
