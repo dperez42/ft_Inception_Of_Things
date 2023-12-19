@@ -9,7 +9,7 @@ Launches with a Vagrantfile with only one VMs (CentOS as operating system) with 
 
 containing a cluster of K3S (a lightweight kubernetes https://docs.k3s.io/quick-start):
 
-![Alt text](image-1.png)
+![Alt text](image-4.png)
 
 - one in server mode, dedicated IP on the eth1 interface 192.168.56.247
 
