@@ -7,11 +7,9 @@ sudo apt update
 sudo apt upgrade -y
 
 printf "\e[1;33m[CURL]💾: Install CURL\n\e[0m"
-echo "\n>> INSTALL CURL\n"
 sudo apt install curl -y
 
 printf "\e[1;33m[NET-TOOLS]💾: Install NET-TOOLS\n\e[0m"
-echo "\n>> INSTALL NET-TOOLS\n"
 sudo apt install net-tool
 
 printf "\e[1;33m[VIM]💾: Install VIM \n\e[0m"
@@ -35,7 +33,7 @@ curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 printf "\e[1;33m[ARGOCD]🐙 : Install ARGO-CD \n\e[0m "
 sudo curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
-rm argocd-linux-amd64
+sudo rm argocd-linux-amd64
 argocd version
 
 #echo "\n>> INSTALL HELM\n"

@@ -9,16 +9,33 @@ Continuos integration with argos.
 Create a virtual machine:
 
 ubuntu-22.04.3-desktop-amd64.iso
+
 Ubuntu (64 bits)
+
 RAM: 2048 mb
+
 PROCESSORS: 2
+
 VIDEO MEMORY: 128 mb
+
 STORAGE: 30 GB
+
 NETWORK ADAPTER: bridge
 
 
 sudo apt install git -y
+
 git --version
+
+programs to install:
+
+- Docker
+- Kubectl
+- K3D
+- ArgoCd
+- Vim
+- Net-tools
+- Curl 
 
 ## SETUP K3D CLUSTER + ARGOCD:
 1.- Create the cluster
