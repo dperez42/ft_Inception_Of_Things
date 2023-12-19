@@ -1,15 +1,19 @@
 #!/bin/bash
-echo $#
+#echo $#
 if [ $# -ne 1 ]
 then 
     printf "\e[0;31m💥 Error to many arguments: usage -> setup_password.sh new_password \n\e[0m"
     exit 1
 fi
 
-sudo argocd account bcrypt --password $1 > password.log
+
 echo $(sudo cat password.log)
-sudo kubectl -n argocd patch secret argocd-secret -p '{"data": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
+printf "\e[1;33m[ARGOCD]🐙 : changing admin password to '$1' \n\e[0m "
+sudo argocd account bcrypt --password $1 > password.log
+sudo kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
 sudo rm password.log
+#sudo kubectl -n argocd patch secret argocd-secret -p '{"data": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
+#sudo rm password.log
 
 printf "\n\e[0;33m####################################"
 printf "########## Password update !! ###########"
