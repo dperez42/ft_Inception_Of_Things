@@ -6,31 +6,14 @@ echo "\n>> UPDATE / UPGRADE\n"
 sudo apt update
 sudo apt upgrade -y
 
-#echo "\n>> INSTALL MAKE\n"
-#sudo apt install make -y
-
 echo "\n>> INSTALL CURL\n"
 sudo apt install curl -y
 
-#sudo apt install vim -y
-#echo "\n>> INSTALL VIM\n"
+echo "\n>> INSTALL NET-TOOLS\n"
+sudo apt install net-tool
 
-#echo "\n>> INSTALL XSEL\n"
-#sudo apt install xsel -y
-
-#echo "\n>> INSTALL GH\n"
-#sudo apt install gh -y
-
-#sudo apt install virtualbox -y
-#echo "\n>> INSTALL VIRTUALBOX\n"
-#sudo virtualbox --version
-
-#echo "\n>> INSTALL VAGRANT\n"
-#sudo chmod +x vagrant_2.2.19_x86_64.deb
-#sudo wget https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.deb
-#sudo rm vagrant_2.2.19_x86_64.deb
-#sudo apt install ./vagrant_2.2.19_x86_64.deb
-#sudo vagrant --version
+sudo apt install vim -y
+echo "\n>> INSTALL VIM\n"
 
 echo "\n>> INSTALL DOCKER\n"
 sudo apt install docker.io -y

@@ -78,11 +78,13 @@ k3d cluster stop
 
 https://argo-cd.readthedocs.io/en/stable/getting_started/
 
-argocd login localhost:8080 
-argocd app list
-argocd app get app_argocd_name  
-argocd app sync app_argocd_name
+Need to login in argo-cd server to run argocd commands.
 
+argocd login localhost:8080 
+
+argocd app list
+argocd app get app_argocd_name  --> show status
+argocd app sync app_argocd_name --> sync app
 
 argocd app create guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default
 
@@ -119,3 +121,8 @@ Sync Status:        OutOfSync from  (1ff8a67)
 Health Status:      Missing
 
 argocd app sync guestbook (sync manually, This command retrieves the manifests from the repository and performs a kubectl apply of the manifests.)
+
+secrets in argocd (user y password)
+https://medium.com/@dulanjanalakmal/securing-argocd-a-step-by-step-guide-to-resetting-admin-passwords-bb5236208a64
+https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/
+https://github.com/argoproj/argo-cd/blob/master/docs/faq.md
