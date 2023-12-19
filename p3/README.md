@@ -14,7 +14,6 @@ sudo apt install git
 git --version
 
 
-
 1.- Create the cluster
 
 sudo k3d cluster create p3
