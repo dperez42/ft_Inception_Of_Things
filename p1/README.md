@@ -6,6 +6,14 @@ Launches with a Vagrantfile 2 VMs (CentOS as operating system) with minimun reso
 - 512 MB of RAM
 - Enable the natdnsproxy1 option.
 - Enable the natdnshostresolver1 option.
+- networking in vms:
+        --natdnsproxy<1-N> on|off: Makes the NAT engine proxy all guest DNS requests to the host's DNS servers. See Section 9.8.5, “Enabling DNS Proxy in NAT Mode”.
+
+        --natdnshostresolver<1-N> on|off: Makes the NAT engine use the host's resolver mechanisms to handle DNS requests. See Section 9.8.6, "Using the Host's Resolver as a DNS Proxy in NAT Mode".
+
+        Overview of Networking Modes:
+<img height="250em" src="https://res.cloudinary.com/practicaldev/image/fetch/s--bkXgY9Zy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/jggjga0q20kyh9y3oinr.jpeg"/>
+
 
 containing K3S (a lightweight kubernetes https://docs.k3s.io/quick-start):
 
@@ -86,7 +94,7 @@ launch a command in a deployment:
 
 - kubectl exec deploy/mysql-deployment command
 
-For enter in a 
+For enter in a pod
 
 - kubectl exec -it app1-6967497c59-9bj4n -- sh
 

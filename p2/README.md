@@ -36,6 +36,7 @@ Note: Use the correct IP
 > Vagrant up
 
 ## CHEATSHEET:
+
 Vagrant comands:
 
 to enter via SSH

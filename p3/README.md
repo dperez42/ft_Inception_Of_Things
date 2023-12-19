@@ -1,3 +1,8 @@
+## DESCRIPTION:
+
+Continuoys integratión with argos.
+
+## VIRTUAL MACHINE:
 
 Create a virtual machine:
 
@@ -13,7 +18,7 @@ NETWORK ADAPTER: bridge
 sudo apt install git
 git --version
 
-
+## SETUP K3D CLUSTER + ARGOCD:
 1.- Create the cluster
 
 sudo k3d cluster create p3
