@@ -2,7 +2,7 @@
 
 Continuos integration with argos.
 
-
+![Alt text](p3.png)
 
 ## VIRTUAL MACHINE:
 
