@@ -1,6 +1,6 @@
 sudo argocd account bcrypt --password admin > password.log
 echo $(sudo cat password.log)
-sudo kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
+sudo kubectl -n argocd patch secret argocd-secret -p '{"data": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
 #sudo rm password.log
 
 printf "\e[0;33m url : https://localhost:8080 \n"
