@@ -1,6 +1,6 @@
 ## DESCRIPTION:
 
-Continuoys integratión with argos.
+Continuos integratión with argos.
 
 ## VIRTUAL MACHINE:
 
@@ -15,7 +15,7 @@ STORAGE: 30 GB
 NETWORK ADAPTER: bridge
 
 
-sudo apt install git
+sudo apt install git -y
 git --version
 
 ## SETUP K3D CLUSTER + ARGOCD:

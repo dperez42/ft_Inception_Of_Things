@@ -3,7 +3,6 @@ echo "=== INSTALL DIFFERENT TOOLS ===\n"
 echo "===============================\n\n"
 
 printf "\e[1;33m[UPDATE]💾: UPDATE/UPGRADE \n\e[0m"
-echo "\n>> UPDATE / UPGRADE\n"
 sudo apt update
 sudo apt upgrade -y
 

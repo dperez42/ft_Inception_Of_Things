@@ -12,7 +12,7 @@ Launches with a Vagrantfile 2 VMs (CentOS as operating system) with minimun reso
         --natdnshostresolver<1-N> on|off: Makes the NAT engine use the host's resolver mechanisms to handle DNS requests. See Section 9.8.6, "Using the Host's Resolver as a DNS Proxy in NAT Mode".
 
         Overview of Networking Modes:
-<img height="250em" src="https://res.cloudinary.com/practicaldev/image/fetch/s--bkXgY9Zy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/jggjga0q20kyh9y3oinr.jpeg"/>
+<img height="250em" src="https://i.stack.imgur.com/rRfpM.png"/>
 
 
 containing K3S (a lightweight kubernetes https://docs.k3s.io/quick-start):
