@@ -27,7 +27,7 @@ sudo apt install git -y
 
 git --version
 
-programs to install:
+programs to install (all in setup_ubuntu_vm):
 
 - Docker
 - Kubectl
@@ -49,18 +49,27 @@ sudo kubectl create namespace dev
 
 3.- Install Argocd in the namespace: argocd
 
-sudo kubectl apply -n argocd -f /p3/p3/confs/argocd_install.yaml
-sudo kubectl apply -n argocd -f /p3/p3/confs/argocd_ingress.yaml
+sudo kubectl apply -n argocd -f ../confs/argocd_install.yaml
 
-argocd_install.yaml y argocd_ingress.yaml is download from https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+argocd_install.yaml is a template download from https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-4.- Get user y password of ArgoCD
+Must wait to pods ready:
 
-echo "url : https://localhost:8080"
-echo "user: admin"
-echo -n "password: "
-sudo kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-echo ""
+sudo kubectl rollout status deployment argocd-redis -n argocd
+
+sudo kubectl rollout status deployment argocd-server -n argocd
+
+sudo kubectl rollout status deployment argocd-dex-server -n argocd
+
+sudo kubectl rollout status deployment argocd-repo-server -n argocd
+
+4.- Changing ARGOCD admin password to 'admin'
+
+sudo argocd account bcrypt --password admin > password.log
+
+sudo kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
+
+sudo rm password.log
 
 
 
@@ -75,8 +84,7 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 
 Kubectl port-forwarding can also be used to connect to the API server without exposing the service.
 
-nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & 
-user: admin
+nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & user:admin
 
 The API server can then be accessed using https://localhost:8080
 
@@ -86,7 +94,7 @@ https://argo-cd.readthedocs.io/en/stable/getting_started/
 
 6.- setup our your aplication in ArgoCD:
 
-sudo kubectl apply -f /p3/p3/confs/argocd_app1.yaml
+sudo kubectl -n argocd apply -f ../confs/argocd_app_dperez.yaml
 
 CHEETSHEET
 

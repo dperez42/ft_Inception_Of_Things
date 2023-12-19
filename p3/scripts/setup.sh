@@ -33,8 +33,8 @@ sudo kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.pas
 sudo rm password.log
 
 printf "\e[1;33m[ARGOCD]🐙 : make ARGOCD UI accesible at port 8080. \n\e[0m "
-nohup sudo kubectl -n argocd port-forward svc/argocd-server 8080:443 >> argocdlogs.log 2>&1 & 
-#user: admin
+nohup sudo kubectl -n argocd port-forward svc/argocd-server 8080:443 >> argocdlogs.log 2>&1 & user: admin
+
 printf "\e[0;33m#########################################\n"
 printf " ########## Password update !! ###########\n"
 printf " ######🐙 ARGOCD : localhost:8080 ########\n"
