@@ -22,7 +22,7 @@ printf "\e[1;35m[APPLICATION]🖥 : setup wils application to fetch its config f
 sudo kubectl -n argocd apply -f ../confs/argocd_app1.yaml
 
 printf "\e[1;33m[ARGOCD]🐙 : make ARGOCD UI accesible at:\n\e[0m "
-nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & 
+nohup sudo kubectl -n argocd port-forward svc/argocd-server 8080:443 >> argocdlogs.log 2>&1 & 
 #user: admin
 
 
