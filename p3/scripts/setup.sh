@@ -1,6 +1,6 @@
 #!/bin/sh
 
-printf "\e[1;36m[K3S]🐳 : creating cluster K3d.\n\e[0m"
+printf "\e[1;36m[K3S]🐳 : creating cluster p3 in K3d.\n\e[0m"
 sudo k3d cluster create p3
 sudo kubectl cluster-info
 printf "\e[1;36m[K3S]🐳 : creating namespaces argodev y dev K3d.\n\e[0m"
