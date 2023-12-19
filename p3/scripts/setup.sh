@@ -1,3 +1,5 @@
+#!/bin/sh
+
 printf "\e[1;36m[K3S]🐳 : creating cluster K3d.\n\e[0m"
 sudo k3d cluster create p3
 sudo kubectl cluster-info
@@ -16,10 +18,10 @@ sudo kubectl rollout status deployment argocd-redis -n argocd
 sudo kubectl rollout status deployment argocd-repo-server -n argocd
 sudo kubectl rollout status deployment argocd-dex-server -n argocd
 
-printf "\e[1;33m[wils-APPLICATION] : setup wils application to fetch its config from our github repo \e[0m "
-sudo kubectl apply -n argocd -f /p3/p3/confs/argocd_app1.yaml
+printf "\e[1;35m[APPLICATION]🖥 : setup wils application to fetch its config from our github repo \e[0m "
+sudo kubectl apply -f /p3/p3/confs/argocd_app1.yaml
 
-printf "\e[1;33m[wils-APPLICATION] : make ARGOCD UI accesible \e[0m "
+printf "\e[1;33m[ARGOCD]🐙 : make ARGOCD UI accesible n\e[0m "
 #nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & 
 #user: admin
 echo "url : https://localhost:8080"

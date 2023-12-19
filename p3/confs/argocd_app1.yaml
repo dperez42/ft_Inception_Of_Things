@@ -4,14 +4,17 @@ metadata:
   name: argocd-wilapp
   namespace: argocd
 spec:
+  project: default
   destination:
     namespace: dev
     server: https://kubernetes.default.svc
-  project: default
   source:
     repoURL: https://github.com/zamazzal/iot-app.git
     path: .
-    targetRevision: master
+    targetRevision: HEAD
   syncPolicy:
-    prune: true
-    selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
