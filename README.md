@@ -35,7 +35,7 @@ Install Git
 checK:
     git --version
 
-    git clone https://github.com/dperez42/ft_Inception_Of_Things.git ft_inception_of_things
+    git clone https://github.com/dperez42/ft_Inception_Of_Things.git inception_of_things
 
 Go to a scripts path and run setup_ubuntu_vm.sh to install necessary programs and dependencies:
 - CURL
