@@ -52,3 +52,4 @@ printf "\e[1;35m[KUBECTL]🌈 : kubectl -> k \n\e[0m "
 sudo echo "alias d ='docker'" >> ~/.bashrc
 sudo echo "alias k ='kubectl'" >> ~/.bashrc
 sudo exec bash
+# sudo source ~/.bashrc

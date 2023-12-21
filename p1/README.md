@@ -39,7 +39,7 @@ TIPS:
 
 ## USE:
 
-> Vagrant up
+> vagrant up
 
 ## CHEATSHEET:
 Vagrant comands:
