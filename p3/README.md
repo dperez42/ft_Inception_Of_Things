@@ -45,6 +45,7 @@ sudo k3d cluster create p3
 2.- Create two namespace: dev, argocd
 
 sudo kubectl create namespace argocd
+
 sudo kubectl create namespace dev
 
 3.- Install Argocd in the namespace: argocd

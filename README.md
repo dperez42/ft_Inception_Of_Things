@@ -1,9 +1,9 @@
-# ft_Inception_Of_Things
+# ft_Inception_Of_Things. this is not Internet of Things
 
 This project aims to introduce you to kubernetes from a developer perspective. You will have to set up small clusters and discover the mechanics of continuous integration. At the end of this project you will be able to have a working cluster in docker and have a usable continuous integration for your applications.
-Use K3d and K3s with Vagrant
 
 This project consists of multiple parts.
+
 >Part one launches VMs containing K3S (a lightweight kubernetes) with Vagrant.
 
 >Part two orchestrates multiple apps with kubernetes while using as router an ingress, all inside a VM launched with Vagrant.
@@ -14,7 +14,7 @@ This project consists of multiple parts.
 
 All running in a Virtual Machine
 
-# Virtual Machine:
+# Ubuntu Virtual Machine:
 
 ### configuration.
 
@@ -22,7 +22,7 @@ ISO: https://ubuntu.com/download/desktop/thank-you?version=22.04.3&architecture=
 
 NAME: Ubuntu22lts
 RAM: 2048
-Procesares: 2
+Procesadores: 2
 Memoría de video: 128MB
 Red: Adaptador puente
 Almacenamiento: 30 GB
@@ -30,21 +30,20 @@ Almacenamiento: 30 GB
 to enable nested virtualization
 >VBoxManage modifyvm VM.name --nested-hw-virt on
 
-install Virtual Box
-do apt-get install virtualbox-ext-pack
-sudo apt-get install virtualbox -y
-
-check with
-VBoxManage --version
-or
-virtualbox --help
-
-Install vagrant
-sudo apt install vagrant
-check:
-vagrant --version
-
 Install Git
-sudo apt install git
+    sudo apt install git
 checK:
-git --version
+    git --version
+
+    git clone https://github.com/dperez42/ft_Inception_Of_Things.git ft_inception_of_things
+
+Go to a scripts path and run setup_ubuntu_vm.sh to install necessary programs and dependencies:
+- CURL
+- NET-TOOLS
+- VIM
+- VIRTUALBOX
+- VAGRANT
+- DOCKER
+- KUBECTL
+- K3D
+- ARGOCD

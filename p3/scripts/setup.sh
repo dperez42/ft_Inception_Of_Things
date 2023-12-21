@@ -42,6 +42,6 @@ printf " ########### User: admin #################\n"
 printf " ######### Password: admin ###############\n"
 printf " #########################################\n"
 printf " ######## dperez-APP: localhost:80 #######\n"
-printf "#######################################\n\e[0m"
+printf " #########################################\n\e[0m"
 printf "\e[1;35m[APPLICATION] 🖥: setup dperez application to fetch its config from our github repo  \n\e[0m "
 exit 0

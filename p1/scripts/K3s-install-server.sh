@@ -8,6 +8,7 @@ KUBE_CONFIG="/etc/rancher/k3s/k3s.yaml"
 
 while [ ! -e ${NODE_TOKEN} ]
 do
+    printf "\e[1;36m🐳  [K3S]: waiting for server token...\n\e[0m"
     sleep 2
 done
 printf "\e[1;36m🐳  [K3S]: creating directories...\n\e[0m"
