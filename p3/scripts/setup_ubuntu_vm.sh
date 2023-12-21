@@ -45,3 +45,10 @@ sudo curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/release
 sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 sudo rm argocd-linux-amd64
 argocd version
+
+printf "\e[1;31m[ALIASES]✨ : Creating Aliases. \n\e[0m "
+printf "\e[1;36m[DOCKER]🐳 : docker -> d \n\e[0m "
+printf "\e[1;35m[KUBECTL]🌈 : kubectl -> k \n\e[0m "
+sudo echo "alias d ='docker'" >> ~/.bashrc
+sudo echo "alias k ='kubectl'" >> ~/.bashrc
+sudo exec bash
