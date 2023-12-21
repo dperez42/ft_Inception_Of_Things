@@ -49,7 +49,7 @@ argocd version
 printf "\e[1;31m[ALIASES]✨ : Creating Aliases. \n\e[0m "
 printf "\e[1;36m[DOCKER]🐳 : docker -> d \n\e[0m "
 printf "\e[1;35m[KUBECTL]🌈 : kubectl -> k \n\e[0m "
-sudo echo "alias d ='docker'" >> ~/.bashrc
-sudo echo "alias k ='kubectl'" >> ~/.bashrc
+sudo echo "alias d='docker'" >> ~/.bashrc
+sudo echo "alias k='kubectl'" >> ~/.bashrc
 sudo exec bash
 # sudo source ~/.bashrc
