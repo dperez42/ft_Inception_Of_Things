@@ -4,7 +4,7 @@ This project aims to introduce you to kubernetes from a developer perspective. Y
 
 This project consists of multiple parts.
 
->Part one launches VMs containing K3S (a lightweight kubernetes) with Vagrant.
+>Part one: Create a K3S cluster with two VMs launches and create with Vagrant and one in server mode and the other in agent mode. (a lightweight kubernetes).
 
 >Part two orchestrates multiple apps with kubernetes while using as router an ingress, all inside a VM launched with Vagrant.
 

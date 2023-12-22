@@ -41,6 +41,11 @@ TIPS:
 
 > vagrant up
 
+Enter in the vm server with `vagrant ssh dperez-zS'
+
+and see the status of the K3s cluster with 'kubectl get nodes -o wide', you will see the two vm machines.
+
+
 ## CHEATSHEET:
 Vagrant comands:
 

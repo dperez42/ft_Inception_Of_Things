@@ -13,5 +13,7 @@ sleep 10
 echo "[SETUP ALIAS] : [SETUP] : initiat aliases for all machine users"
 ### https://askubuntu.com/questions/610052/how-can-i-preset-aliases-for-all-users
 sudo echo "alias k=kubectl" >> ~/.bashrc
+exec bash # reload .bashrc
+printf "\e[1;35m[KUBECTL]🌈 : kubectl -> k \n\e[0m "
 
-printf "\e[0;32m 🚀 [machine : $(hostname)] has been setup succefully in K3S server mode!"
+printf "\e[0;32m 🚀 [machine : $(hostname)] has been setup succefully in K3S agent mode!"
