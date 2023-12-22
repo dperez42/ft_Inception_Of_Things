@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# the first two lines are modeling for vim or emacs in case you are using them
+# read more : https://vim.fandom.com/wiki/Modeline_magic and http://www.gnu.org/software/emacs/manual/html_node/emacs/Choosing-Modes.html
+
+# master config
+SERVER_NAME = 'dperez-zS'
+SERVER_IP = '172.17.0.10' #'192.168.42.110'
+
+# common config
+MEM = 1024
+CPU = 1
+BOX = "generic/centos8" # p.e. generic/alpine312 centos/8,....
+#BOX_URL = "https://app.vagrantup.com/centos/boxes/8/versions/2011.0/providers/virtualbox.box"
+BOX_AUTO_UPDATE = false
+
+# disable firewall so we can have direct ssh access without need to copy our ssh public key to the machine 
+# !!! (NOT RECOMMENDED , USE THE SSH KEYS METHOD IN PRODUCTION ENV, THIS IS ONLY FOR SCHOOL PRACTICING PURPOSE ) !!!
+
+Vagrant.configure("2") do |config|
+	config.vm.box = BOX
+	#config.vm.box_url = BOX_URL
+	config.vm.box_check_update = BOX_AUTO_UPDATE
+    config.ssh.forward_agent = true
+    config.ssh.insert_key = false
+    config.vm.provision "shell", path: "scripts/firewalld-disable.sh"
+    #config.vm.provision "shell", path: "scripts/k3s-install.sh"
+  
+	config.vm.provider "virtualbox" do |v|
+		v.memory = MEM
+		v.cpus = CPU
+        # is like VboxMange VM.name --
+		v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+		v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+        #v.customize ["modifyvm", :id, "--nested-hw-virt", "on"] #enable virtualization VT-x/AMD-V anidada
+	end
+
+	config.vm.define SERVER_NAME do |master|
+		master.vm.hostname = SERVER_NAME
+		master.vm.network "private_network", ip: SERVER_IP, hostname: true
+		master.vm.synced_folder "./config", "/vagrant/config", type: "virtualbox"
+		master.vm.provision "file", source: "./scripts", destination: "/vagrant/scripts"
+        #master.vm.provision "shell", path: "/vagrant/scripts/k3s-install-server.sh"
+		#master.vm.provision "shell", privileged: true, path: "scripts/master_node_setup.sh", args: [MASTER_NODE_IP]
+
+		master.vm.provider "virtualbox" do |v|
+			v.name = SERVER_NAME
+			# v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
+		end
+	end
+
+end
