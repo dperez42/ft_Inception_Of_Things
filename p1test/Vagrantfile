@@ -5,7 +5,7 @@
 
 # master config
 SERVER_NAME = 'dperez-zS'
-SERVER_IP = '172.17.0.10' #'192.168.42.110'
+SERVER_IP = '192.168.42.110'
 
 # common config
 MEM = 1024
