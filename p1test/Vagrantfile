@@ -5,6 +5,7 @@
 
 # master config
 SERVER_NAME = 'dperez-zS'
+SERVER_TOKEN = '12345'
 SERVER_IP = '192.168.63.110'
 
 # common config
@@ -22,27 +23,34 @@ Vagrant.configure("2") do |config|
 	#config.vm.box_url = BOX_URL
 	config.vm.box_check_update = BOX_AUTO_UPDATE
     config.vm.provision "shell", path: "scripts/firewalld-disable.sh"
-    #config.vm.provision "shell", path: "scripts/k3s-install.sh"
   
+	# DEFINE THE PROVIDER
 	config.vm.provider "virtualbox" do |v|
 		v.memory = MEM
 		v.cpus = CPU
-        # is like VboxMange VM.name --
+        # is like VboxManage VM.name -- (command)
 		v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 		v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
         #v.customize ["modifyvm", :id, "--nested-hw-virt", "on"] #enable virtualization VT-x/AMD-V anidada
 	end
 
+	# SERVER VM
 	config.vm.define SERVER_NAME do |master|
 		master.vm.hostname = SERVER_NAME
+
+		# define network https://developer.hashicorp.com/vagrant/docs/networking
 		master.vm.network "private_network", ip: SERVER_IP, hostname: true
-		# sync folder between host and guest -> goob for share infomation
-		#master.vm.synced_folder "./config", "/vagrant/config", type: "virtualbox"
-		# upload files from host to guest machine. note: not with high privileges
+
+		# sync folder between host and guest -> good for share infomation between VMs https://developer.hashicorp.com/vagrant/docs/synced-folders
+		# By default, Vagrant will share your project directory (the directory with the Vagrantfile) to /vagrant.
+		master.vm.synced_folder "./config", "$HOME/vagrant/config", type: "virtualbox"
+
+		# upload files from host to guest machine. note: not with high privileges https://developer.hashicorp.com/vagrant/docs/provisioning/file
 		master.vm.provision "file", source: "./scripts", destination: "$HOME/vagrant/scripts"
-		# execute shell scripts, privileged: true (sudo) (default)
+		
+		# execute shell scripts, privileged: true (sudo) (default) https://developer.hashicorp.com/vagrant/docs/provisioning/shell
 		master.vm.provision "shell", inline: "echo hello"
-        #master.vm.provision "shell", path: "/vagrant/scripts/k3s-install-server.sh"
+        #master.vm.provision "shell", path: "$HOME/vagrant/scripts/k3s-install-server.sh", args: [SERVER_TOKEN]
 		#master.vm.provision "shell", privileged: true, path: "scripts/master_node_setup.sh", args: [MASTER_NODE_IP]
 
 		master.vm.provider "virtualbox" do |v|
