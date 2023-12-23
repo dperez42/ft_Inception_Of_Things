@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
 
 		# sync folder between host and guest -> good for share infomation between VMs https://developer.hashicorp.com/vagrant/docs/synced-folders
 		# By default, Vagrant will share your project directory (the directory with the Vagrantfile) to /vagrant.
-		master.vm.synced_folder "./config", "$HOME/vagrant/config", type: "virtualbox"
+		#master.vm.synced_folder "./config", "/vagrant/config", type: "virtualbox"
 
 		# upload files from host to guest machine. note: not with high privileges https://developer.hashicorp.com/vagrant/docs/provisioning/file
 		master.vm.provision "file", source: "./scripts", destination: "$HOME/vagrant/scripts"
