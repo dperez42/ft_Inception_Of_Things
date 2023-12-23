@@ -10,7 +10,7 @@ printf "\e[1;33m[CURL]💾 : Install CURL\n\e[0m"
 sudo apt install curl -y
 
 printf "\e[1;33m[NET-TOOLS]💾 : Install NET-TOOLS\n\e[0m"
-sudo apt install net-tool
+sudo apt install net-tools
 
 printf "\e[1;33m[VIM]💾 : Install VIM \n\e[0m"
 sudo apt install vim -y
