@@ -21,8 +21,6 @@ Vagrant.configure("2") do |config|
 	config.vm.box = BOX
 	#config.vm.box_url = BOX_URL
 	config.vm.box_check_update = BOX_AUTO_UPDATE
-    config.ssh.forward_agent = true
-    config.ssh.insert_key = false
     config.vm.provision "shell", path: "scripts/firewalld-disable.sh"
     #config.vm.provision "shell", path: "scripts/k3s-install.sh"
   
@@ -38,8 +36,12 @@ Vagrant.configure("2") do |config|
 	config.vm.define SERVER_NAME do |master|
 		master.vm.hostname = SERVER_NAME
 		master.vm.network "private_network", ip: SERVER_IP, hostname: true
+		# sync folder between host and guest -> goob for share infomation
 		#master.vm.synced_folder "./config", "/vagrant/config", type: "virtualbox"
-		master.vm.provision "file", source: "./scripts", destination: "/vagrant/scripts"
+		# upload files from host to guest machine. note: not with high privileges
+		master.vm.provision "file", source: "./scripts", destination: "$HOME/vagrant/scripts"
+		# execute shell scripts, privileged: true (sudo) (default)
+		master.vm.provision "shell", inline: "echo hello"
         #master.vm.provision "shell", path: "/vagrant/scripts/k3s-install-server.sh"
 		#master.vm.provision "shell", privileged: true, path: "scripts/master_node_setup.sh", args: [MASTER_NODE_IP]
 
