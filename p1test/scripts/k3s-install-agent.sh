@@ -10,8 +10,8 @@ printf "\e[1;36m🐳  [K3S] : installing agent...\n\e[0m"
 # check if token exits?
 curl -sfL https://get.k3s.io | K3S_URL=https://$1:6443 K3S_TOKEN=$2 sh -
 sleep 10
+
 echo "[SETUP ALIAS] : [SETUP] : initiat aliases for all machine users"
-### https://askubuntu.com/questions/610052/how-can-i-preset-aliases-for-all-users
 sudo echo "alias k=kubectl" >> ~/.bashrc
 exec bash # reload .bashrc
 printf "\e[1;35m[KUBECTL]🌈 : kubectl -> k \n\e[0m "
