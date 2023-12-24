@@ -8,7 +8,7 @@ fi
 
 printf "\e[1;36m🐳  [K3S]: installing server...\n\e[0m"
 
-#curl -fL https://get.k3s.io | INSTALL_K3S_VERSION=v1.22.7+k3s1 sh -s - server
+#curl -fL https://get.k3s.io | INSTALL_K3S_VERSION=v1.24.17+k3s1 sh -s - server
 curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --flannel-iface eth1 --token $1" sh -s -
 sleep 10
 
