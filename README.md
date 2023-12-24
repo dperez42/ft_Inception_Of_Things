@@ -19,12 +19,13 @@ All running in a Virtual Machine
 ### configuration.
 
 ISO: https://ubuntu.com/download/desktop/thank-you?version=22.04.3&architecture=amd64
+ISO: https://ubuntu.com/download/desktop/thank-you?version=16.04.7&architecture=amd64
 
 NAME: Ubuntu22lts
 RAM: 2048
 Procesadores: 2
 Memoría de video: 128MB
-Red: Adaptador puente
+Red: NAT
 Almacenamiento: 30 GB
 
 to enable nested virtualization
