@@ -28,7 +28,7 @@ Memoría de video: 128MB
 Red: NAT
 Almacenamiento: 30 GB
 
-to enable nested virtualization
+to enable nested virtualization, DO IT WITH VM STOPPED
 >VBoxManage modifyvm VM.name --nested-hw-virt on
 
 Install Git
