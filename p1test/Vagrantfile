@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
 		
 		# Execute shell scripts in guest, privileged: true (sudo) (default) https://developer.hashicorp.com/vagrant/docs/provisioning/shell
 		master.vm.provision "shell", inline: "echo hello"
-        master.vm.provision "shell", path: "$HOME/vagrant/scripts/k3s-install-server.sh", args: [SERVER_TOKEN]
+        master.vm.provision "shell", path: "/scripts/k3s-install-server.sh", args: [SERVER_TOKEN]
 		#master.vm.provision "shell", privileged: true, path: "scripts/master_node_setup.sh", args: [MASTER_NODE_IP]
 
 		master.vm.provider "virtualbox" do |v|
@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
 		worker.vm.provision "file", source: "~/scripts", destination: "/vagrant/scripts"
 
 		# Execute shell scripts, privileged: true (sudo) (default) https://developer.hashicorp.com/vagrant/docs/provisioning/shell        
-		worker.vm.provision "shell", privileged: true, path: "/vagrant/scripts/k3s-install-agent.sh", args: [SERVER_IP, SERVER_TOKEN]
+		worker.vm.provision "shell", privileged: true, path: "scripts/k3s-install-agent.sh", args: [SERVER_IP, SERVER_TOKEN]
 		#worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_IP]
 
 		worker.vm.provider "virtualbox" do |v|
