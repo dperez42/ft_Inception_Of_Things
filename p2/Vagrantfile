@@ -5,6 +5,7 @@
 
 # master config
 SERVER_NAME = 'dperez-zS' # Name of the Virtual Machine
+SERVER_TOKEN = '12345'
 SERVER_IP = '192.168.56.247' # Ip in your network assigned to the virtual machine, check ip availables in 42 school: 192.168.42.110'
 
 # common config
@@ -43,11 +44,12 @@ Vagrant.configure("2") do |config|
 		master.vm.hostname = SERVER_NAME
 		master.vm.network "private_network", ip: SERVER_IP, hostname: true
 		master.vm.synced_folder ".", "/vagrant", type: "virtualbox"		# Links directories from Host -> Virtual Machine 
-        master.vm.provision "shell", privileged: true, path: "scripts/k3s-install-server.sh"
+        master.vm.provision "shell", privileged: true, path: "scripts/k3s-install-server.sh", args: [SERVER_IP, SERVER_TOKEN]
 		#config.vm.provision "shell", path: "scripts/somescript.sh", args: [arg1, arg2, ...]		# example
 
 		master.vm.provider "virtualbox" do |v|
 			v.name = SERVER_NAME
 		end
+		master.vm.provision "shell", inline: "echo 'Virtual Machine dperez-zS deployed'"
 	end
 end

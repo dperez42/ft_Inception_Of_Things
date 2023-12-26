@@ -6,7 +6,8 @@
 # master config
 SERVER_NAME = 'dperez-zS'
 SERVER_TOKEN = '12345'
-SERVER_IP = '192.168.63.110'
+#SERVER_IP = '192.168.63.110'
+SERVER_IP = '192.168.56.247'
 
 #agent config
 WORKER1_NAME = 'dperez-zSW'
@@ -26,9 +27,9 @@ Vagrant.configure("2") do |config|
 	config.vm.box = BOX
 	#config.vm.box_url = BOX_URL
 	config.vm.box_check_update = BOX_AUTO_UPDATE
-	#config.ssh.insert_key = false
-	config.ssh.username = 'vagrant'
-	config.ssh.password = 'vagrant'
+	config.ssh.insert_key = false # leave insecured key-pair to ssh, set to true if you eant generated new
+	#config.ssh.username = 'vagrant'
+	#config.ssh.password = 'vagrant'
     config.vm.provision "shell", path: "./scripts/firewalld-disable.sh"
 
 	
@@ -39,7 +40,7 @@ Vagrant.configure("2") do |config|
         # is like VboxManage VM.name -- (command)
 		v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 		v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-        #v.customize ["modifyvm", :id, "--nested-hw-virt", "on"] #enable virtualization VT-x/AMD-V anidada
+        #v.customize ["modifyvm", :id, "--nested-hw-virt", "on"] # enable virtualization VT-x/AMD-V anidada
 	end
 
 	# SERVER VM
@@ -62,15 +63,17 @@ Vagrant.configure("2") do |config|
 		master.vm.provision "file", source: "./scripts", destination: "$HOME/vagrant/scripts"
 		
 		# Execute shell scripts in guest, privileged: true (sudo) (default) https://developer.hashicorp.com/vagrant/docs/provisioning/shell
-		master.vm.provision "shell", inline: "echo hello"
         master.vm.provision "shell", path: "./scripts/k3s-install-server.sh", args: [SERVER_TOKEN]
-		#master.vm.provision "shell", privileged: true, path: "scripts/master_node_setup.sh", args: [MASTER_NODE_IP]
-		master.vm.post_up_message = "generic/centos8 box server"
+		# example: master.vm.provision "shell", privileged: true, path: "scripts/master_node_setup.sh", args: [MASTER_NODE_IP]
+		# example: master.vm.provision "shell", inline: "echo 'VM dperez-zS deployed'"
+
+		master.vm.post_up_message = "generic/centos8 box server" # Add a custom messsage at the end
 
 		master.vm.provider "virtualbox" do |v|
 			v.name = SERVER_NAME
 			# v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
 		end
+		master.vm.provision "shell", inline: "echo 'Virtual Machine dperez-zS deployed'"
 	end
 
 	config.vm.define WORKER1_NAME do |worker|
@@ -85,17 +88,22 @@ Vagrant.configure("2") do |config|
 		#worker.vm.synced_folder "./config", "/vagrant/config", type: "virtualbox"
 		
 		# Upload files from host to guest machine. note: not with high privileges https://developer.hashicorp.com/vagrant/docs/provisioning/file
-		worker.vm.provision "file", source: "~/scripts", destination: "/vagrant/scripts"
+		worker.vm.provision "file", source: "./scripts", destination: "$HOME/vagrant/scripts"
 
 		# Execute shell scripts, privileged: true (sudo) (default) https://developer.hashicorp.com/vagrant/docs/provisioning/shell        
-		worker.vm.provision "shell", privileged: true, path: "./scripts/k3s-install-agent.sh", args: [SERVER_IP, SERVER_TOKEN]
-		#worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_IP]
-		worker.vm.post_up_message = "generic/centos8 box worker"
+		worker.vm.provision "shell", privileged: true, path: "./scripts/k3s-install-agent.sh", args: [SERVER_IP, SERVER_TOKEN, WORKER1_IP]
+		#worker.vm.provision "shell", inline: "/bin/bash 'source ~/.bashrc'"
+		# example: master.vm.provision "shell", privileged: true, path: "scripts/master_node_setup.sh", args: [MASTER_NODE_IP]
+		# example: master.vm.provision "shell", inline: "echo 'VM dperez-zS deployed'"
+
+		worker.vm.post_up_message = "generic/centos8 box worker" # Add a custom messsage at the end
 
 		worker.vm.provider "virtualbox" do |v|
 			v.name = WORKER1_NAME
 			# v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
 		end
+
+		worker.vm.provision "shell", inline: "echo 'Virtual Machine dperez-zSW deployed'" 
 	end
 
 end

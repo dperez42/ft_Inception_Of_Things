@@ -30,7 +30,7 @@ In order to add K3S agent node, run the installation script with the K3S_URL and
 
 > curl -sfL https://get.k3s.io | K3S_URL=https://myserverip:6443 K3S_TOKEN=mynodetoken sh -
 
-Setting the K3S_URL parameter causes the installer to configure K3s as an agent, instead of a server. The K3s agent will register with the K3s server listening at the supplied URL. The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node.
+Setting the K3S_URL parameter causes the installer to configure K3s as an agent, instead of a server. The K3s agent will register with the K3s server listening at the supplied URL. The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node and your can define yourself with the flag '--token' when server is created.
 <img height="250em" src="https://docs.k3s.io/assets/images/how-it-works-k3s-revised-9c025ef482404bca2e53a89a0ba7a3c5.svg"/>
 
 TIPS:
@@ -47,13 +47,28 @@ and see the status of the K3s cluster with 'kubectl get nodes -o wide', you will
 
 
 ## CHEATSHEET:
-Vagrant comands:
 
-to enter via SSH
+# Vagrant comands:
+
+to enter via SSH. Also to see ssh configuration (vagrant ssh-config vm_name)
 
 > vagrant ssh vm_name
 
-K3S comands:
+to create a default Vagranfile
+
+> vagrant init
+
+to run provision script on a running vm
+
+> vagrant provision
+
+to list the boxes loaded in the system. other commands(vagrant box add/list/outdated/prune/remove/repackage/update)
+
+> vagrant box list
+
+
+# K3S comands:
+
 kubectl, crictl, ctr, k3s-uninstall.sh k3s-killall.sh
 
 In server node:

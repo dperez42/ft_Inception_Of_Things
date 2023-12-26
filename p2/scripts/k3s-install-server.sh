@@ -1,15 +1,28 @@
 #!/bin/bash
-printf "\e[1;36m[K3S]🐳 : Installing K3S.\n\e[0m"
+
+if [ $# -ne 2 ]
+then 
+    printf "\e[0;31m💥 Error incorrect number of arguments: usage -> k3s-install-server.sh SERVER_IP SERVER_TOKEN \n\e[0m"
+    exit 1
+fi
+
+printf "\e[1;36m[K3S]🐳 : Installing K3S. IP: $1, TOKEN: $2 \n\e[0m"
 #export INSTALL_K3S_EXEC="server --no-deploy traefik --write-kubeconfig-mode=644"
 #curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-iface eth1 server --no-deploy traefik" sh -
 #curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--tls-san $1 --node-ip $1 --flannel-iface=eth1" sh -
-curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-iface eth1" sh -
-sleep 10
+curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --flannel-iface eth1 --node-ip $1 --token $2" sh -s -
+sleep 3
 
-echo "[SETUP ALIAS] : [SETUP] : init aliases for all machine users\n\e[0m"
+printf "\e[1;36m[SETUP ALIAS] : created aliases for all machine users \n\e[0m"
 ### https://askubuntu.com/questions/610052/how-can-i-preset-aliases-for-all-users
-sudo echo "alias k='kubectl'" >> ~/.bashrc
-exec bash # reload .bashrc
+# 1º Method.
+echo "alias k='kubectl'" >> .bashrc
+source ~/.bashrc # reload .bashrc to get new aliases, 'source ~/.bashrc' = '. ~/.bashrc' source 
+
+# 2º Method.
+# add alias for kubectl command
+#echo "alias e='echo'" > /etc/profile.d/00.aliases.sh
+
 printf "\e[1;35m[KUBECTL]🌈 : kubectl -> k \n\e[0m "
 
 #DEPLOY DEPLOYS

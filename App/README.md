@@ -1,7 +1,12 @@
+Change files and edit dockerfile, then
+
 docker build -t simple-nginx . 
+
 docker run -ti -p 8081:80 alpine_image
+
 docker run -ti -e "APP_NAME=app1" -p 8080:80 simple-nginx
 
+UPLOAD TO DOKERHUB
 
 (base) Air-de-Daniel:App daniel$ docker login 
 Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
