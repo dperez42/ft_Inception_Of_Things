@@ -38,6 +38,9 @@ programs to install (all in setup_ubuntu_vm):
 - Curl 
 
 ## SETUP K3D CLUSTER + ARGOCD:
+
+> sudo sh setup.sh
+
 1.- Create the cluster
 
 sudo k3d cluster create p3
@@ -52,9 +55,9 @@ sudo kubectl create namespace dev
 
 sudo kubectl apply -n argocd -f ../confs/argocd_install.yaml
 
-argocd_install.yaml is a template download from https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+argocd_install.yaml is a template downloaded from https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-Must wait to pods ready:
+Must wait to pods of argocd are ready:
 
 sudo kubectl rollout status deployment argocd-redis -n argocd
 
@@ -72,9 +75,11 @@ sudo kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.pas
 
 sudo rm password.log
 
+5.- setup our your aplication in ArgoCD:
 
+sudo kubectl -n argocd apply -f ../confs/argocd_app_dperez.yaml
 
-5.-  make ARGOCD UI accesible from "url : https://localhost:8080"
+6.-  make ARGOCD UI accesible from "url : https://localhost:8080"
 
 two ways:
 
@@ -93,9 +98,7 @@ The API server can then be accessed using https://localhost:8080
 
 https://argo-cd.readthedocs.io/en/stable/getting_started/
 
-6.- setup our your aplication in ArgoCD:
 
-sudo kubectl -n argocd apply -f ../confs/argocd_app_dperez.yaml
 
 CHEETSHEET
 
