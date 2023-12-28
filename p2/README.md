@@ -32,13 +32,11 @@ When a client inputs the ip of the server p.e. 192.168.42.110 in his web browser
 Application number 2 has 3 replicas.
 
     kubectl get all
-
+ 
     curl -H "Host:app1.com" 192.168.56.247
-
-
+ 
     curl -H "Host:app2.com" 192.168.56.247
-
-
+ 
     curl -H "Host:app3.com" 192.168.56.247
 
 
