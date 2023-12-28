@@ -57,7 +57,7 @@ you will see the two vm machines.
 
 ## CHEATSHEET:
 
-# Vagrant comands:
+# Vagrant commands:
 
 to enter via SSH. Also to see ssh configuration (vagrant ssh-config vm_name)
 
@@ -76,7 +76,7 @@ to list the boxes loaded in the system. other commands(vagrant box add/list/outd
         vagrant box list
 
 
-# K3S comands:
+# K3S commands:
 
 kubectl, crictl, ctr, k3s-uninstall.sh k3s-killall.sh
 
