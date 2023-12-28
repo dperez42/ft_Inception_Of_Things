@@ -36,9 +36,11 @@ Install Git
 
 > sudo apt install git
 
-checK:
+check with:
 
 > git --version
+
+clone repository:
 
 > git clone https://github.com/dperez42/ft_Inception_Of_Things.git inception_of_things
 
