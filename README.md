@@ -33,11 +33,14 @@ to enable nested virtualization, (DO IT WITH VM STOPPED)
 >VBoxManage modifyvm VM.name --nested-hw-virt on
 
 Install Git
-    sudo apt install git
-checK:
-    git --version
 
-    git clone https://github.com/dperez42/ft_Inception_Of_Things.git inception_of_things
+> sudo apt install git
+
+checK:
+
+> git --version
+
+> git clone https://github.com/dperez42/ft_Inception_Of_Things.git inception_of_things
 
 Go to a scripts path and run setup_ubuntu_vm.sh to install necessary programs and dependencies:
 - CURL
