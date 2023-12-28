@@ -20,44 +20,45 @@ Continuos integration with argosCD.
 
 3.- Install Argocd in the namespace: argocd
 
-sudo kubectl apply -n argocd -f ../confs/argocd_install.yaml
+    sudo kubectl apply -n argocd -f ../confs/argocd_install.yaml
 
 argocd_install.yaml is a template downloaded from https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 Must wait to pods of argocd are ready:
 
-sudo kubectl rollout status deployment argocd-redis -n argocd
+    sudo kubectl rollout status deployment argocd-redis -n argocd
 
-sudo kubectl rollout status deployment argocd-server -n argocd
+    sudo kubectl rollout status deployment argocd-server -n argocd
 
-sudo kubectl rollout status deployment argocd-dex-server -n argocd
+    sudo kubectl rollout status deployment argocd-dex-server -n argocd
 
-sudo kubectl rollout status deployment argocd-repo-server -n argocd
+    sudo kubectl rollout status deployment argocd-repo-server -n argocd
 
 4.- Changing ARGOCD admin password to 'admin'
 
-sudo argocd account bcrypt --password admin > password.log
+      sudo argocd account bcrypt --password admin > password.log
 
 sudo kubectl -n argocd patch secret argocd-secret -p '{"stringData": {"admin.password": "'$(sudo cat password.log)'","admin.passwordMtime": "'$(date +%FT%T%Z)'"}}'
 
-sudo rm password.log
+    sudo rm password.log
 
 5.- setup our your aplication in ArgoCD:
 
-sudo kubectl -n argocd apply -f ../confs/argocd_app_dperez.yaml
+    sudo kubectl -n argocd apply -f ../confs/argocd_app_dperez.yaml
 
 6.-  make ARGOCD UI accesible from "url : https://localhost:8080"
 
 two ways:
 
 >Change the argocd-server service type to LoadBalancer:
-kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+
+    kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 
 >Port Forwarding
 
-Kubectl port-forwarding can also be used to connect to the API server without exposing the service.
+kubectl port-forwarding can also be used to connect to the API server without exposing the service.
 
-nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & user:admin
+    nohup sudo kubectl port-forward svc/argocd-server -n argocd 8080:443 >> argocdlogs.log 2>&1 & user:admin
 
 The API server can then be accessed using https://localhost:8080
 
@@ -82,11 +83,14 @@ Need to login in argo-cd server to run argocd commands.
 argocd login localhost:8080 
 
 argocd app list
+
 argocd app get app_argocd_name  --> show status
+
 argocd app sync app_argocd_name --> sync app
 
 argocd app create guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default
 
+### Example of ymal of argoCD:
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -107,7 +111,10 @@ spec:
     selfHeal: true
 
 
-argocd app get guestbook  (view status of app)
+To see the status:
+
+    argocd app get guestbook
+
 Name:               guestbook
 Server:             https://kubernetes.default.svc
 Namespace:          default
@@ -119,9 +126,22 @@ Sync Policy:        <none>
 Sync Status:        OutOfSync from  (1ff8a67)
 Health Status:      Missing
 
-argocd app sync guestbook (sync manually, This command retrieves the manifests from the repository and performs a kubectl apply of the manifests.)
+To sync manually:
+
+    argocd app sync guestbook 
+    
+(sync manually, This command retrieves the manifests from the repository and performs a kubectl apply of the manifests.)
 
 secrets in argocd (user y password)
+
 https://medium.com/@dulanjanalakmal/securing-argocd-a-step-by-step-guide-to-resetting-admin-passwords-bb5236208a64
+
 https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/
+
 https://github.com/argoproj/argo-cd/blob/master/docs/faq.md
+
+TIPS:
+
+If you want change the admin's password of ArgoCD run:
+
+    setup_password.sh new_password
