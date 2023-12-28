@@ -44,7 +44,7 @@ clone repository:
 
 > git clone https://github.com/dperez42/ft_Inception_Of_Things.git inception_of_things
 
-Go to a scripts path and run setup_ubuntu_vm.sh to install necessary programs and dependencies:
+Go to a any scripts path and run setup_ubuntu_vm.sh to install necessary programs and dependencies:
 - CURL
 - NET-TOOLS
 - VIM
