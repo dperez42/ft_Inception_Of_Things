@@ -12,17 +12,15 @@ Launches with a Vagrantfile 2 VMs (CentOS as operating system) with minimun reso
 
         --natdnshostresolver<1-N> on|off: Makes the NAT engine use the host's resolver mechanisms to handle DNS requests. See Section 9.8.6, "Using the Host's Resolver as a DNS Proxy in NAT Mode".
 
-        Overview of Networking Modes:
-
 <img height="250em" src="https://i.stack.imgur.com/rRfpM.png"/>
 
-### Installing K3S
+### Installing a K3S Cluster
 
-containing K3S (a lightweight kubernetes https://docs.k3s.io/quick-start):
+K3S is a lightweight kubernetes https://docs.k3s.io/quick-start:
 
 - one in server mode, dedicated IP on the eth1 interface 192.168.42.110
 
-> curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --flannel-iface eth1 --token 12345 " sh -s -
+        curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --flannel-iface eth1 --token 12345 " sh -s -
 
 - the other in agent mode, dedicated IP on the eth1 interface 192.168.42.111
 
@@ -30,12 +28,13 @@ In order to add K3S agent node, run the installation script with the K3S_URL and
 
 Here is an example showing how to join an agent:
 
-> curl -sfL https://get.k3s.io | K3S_URL=https://SERVER_IP:6443 K3S_TOKEN=12345 INSTALL_K3S_EXEC="--node-ip=AGENT_IP" sh -s -
+        curl -sfL https://get.k3s.io | K3S_URL=https://SERVER_IP:6443 K3S_TOKEN=12345 INSTALL_K3S_EXEC="--node-ip=AGENT_IP" sh -s -
 
 NOTE: Choose ips avalible in your network
+
 NOTE: If you not define the token, K3S will create one and the value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node or your could define yourself with the flag '--token' when server is created. 
 
-<img height="250em" src="https://docs.k3s.io/assets/images/how-it-works-k3s-revised-9c025ef482404bca2e53a89a0ba7a3c5.svg"/>
+<img height="500em" src="https://docs.k3s.io/assets/images/how-it-works-k3s-revised-9c025ef482404bca2e53a89a0ba7a3c5.svg"/>
 
 TIPS:
 - disable firewalls in VMs to run K3s. systemctl disable firewalld --now
