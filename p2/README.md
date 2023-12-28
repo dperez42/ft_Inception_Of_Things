@@ -35,13 +35,18 @@ Application number 2 has 3 replicas.
 
     curl -H "Host:app1.com" 192.168.56.247
 
+
     curl -H "Host:app2.com" 192.168.56.247
+
 
     curl -H "Host:app3.com" 192.168.56.247
 
+
     curl -H "Host:test.com" 192.168.56.247
 
+
     curl -H 192.168.56.247
+
 
 Note: Use the correct IP
 
