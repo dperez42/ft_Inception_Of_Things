@@ -6,17 +6,17 @@ Continuos integration with argosCD.
 
 ## SETUP K3D CLUSTER + ARGOCD:
 
-  sudo sh setup.sh
+    sudo sh setup.sh
 
-1.- Create the cluster
+1.- Create the cluster:
 
-sudo k3d cluster create p3
+    sudo k3d cluster create p3
 
-2.- Create two namespace: dev, argocd
+2.- Create two namespace: dev, argocd:
 
-sudo kubectl create namespace argocd
+    sudo kubectl create namespace argocd
 
-sudo kubectl create namespace dev
+    sudo kubectl create namespace dev
 
 3.- Install Argocd in the namespace: argocd
 
