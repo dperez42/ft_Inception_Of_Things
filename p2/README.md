@@ -87,7 +87,7 @@ kubectl, crictl, ctr, k3s-uninstall.sh k3s-killall.sh
 
 launch a command in a deployment:
 
-- kubectl exec deploy/mysql-deployment command
+- kubectl exec deploy/mysql-deployment 
 
 For enter in a 
 
