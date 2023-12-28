@@ -17,14 +17,17 @@ All running in a Virtual Machine, in my case UBUNTU
 ### configuration.
 
 ISO: https://ubuntu.com/download/desktop/thank-you?version=22.04.3&architecture=amd64
+
+or
+
 ISO: https://ubuntu.com/download/desktop/thank-you?version=16.04.7&architecture=amd64
 
-NAME: Ubuntu22lts
-RAM: 2048
-Procesadores: 2
-Memoría de video: 128MB
-Red: NAT
-Almacenamiento: 30 GB
+- NAME: Ubuntu22lts
+- RAM: 2048
+- Procesadores: 2
+- Memoría de video: 128MB
+- Network: NAT
+- Storage: 20 GB
 
 to enable nested virtualization, (DO IT WITH VM STOPPED)
 >VBoxManage modifyvm VM.name --nested-hw-virt on
