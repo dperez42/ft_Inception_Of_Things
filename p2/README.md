@@ -11,11 +11,13 @@ containing a cluster of K3S (a lightweight kubernetes https://docs.k3s.io/quick-
 
 ![Alt text](../assets/p2.png)
 
-- one in server mode, dedicated IP on the eth1 interface 192.168.56.247
+- one vm in server mode, dedicated IP on the eth1 interface 192.168.56.110
 
-NOTE: Choose ips avalible in your network
+NOTE: Choose ips avalible in your network.
 
-K3S (a lightweight kubernetes) to install in server mode
+### Installing K3S
+
+K3S (a lightweight kubernetes) to install in server mode:
 
 > curl -sfL https://get.k3s.io | sh -
 
