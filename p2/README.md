@@ -19,11 +19,13 @@ NOTE: Choose ips avalible in your network.
 
 K3S (a lightweight kubernetes) to install in server mode:
 
-> curl -sfL https://get.k3s.io | sh -
+        curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --flannel-iface eth1 --token 12345 " sh -s -
 
 TIPS:
 - disable firewalls in VMs to run K3.
 - You can sync a folder with a folder host to share information like p.e. node-token.
+
+### Test
 
 When a client inputs the ip of the server p.e. 192.168.42.110 in his web browser with the HOST app1.com, the server must display the app1. When the HOST app2.com is used, the server must display the app2. Otherwise, the app3 will be selected by default.
 
@@ -37,17 +39,32 @@ Application number 2 has 3 replicas.
 Note: Use the correct IP
 
 ## USE:
-> Vagrant up
+
+    Vagrant up
 
 ## CHEATSHEET:
 
-Vagrant comands:
+# Vagrant commands:
 
-to enter via SSH
+to enter via SSH. Also to see ssh configuration (vagrant ssh-config vm_name)
 
-> vagrant ssh vm_name
+        vagrant ssh vm_name
 
-K3S comands:
+to create a default Vagranfile
+
+        vagrant init
+
+to run provision script on a running vm
+
+        vagrant provision
+
+to list the boxes loaded in the system. other commands(vagrant box add/list/outdated/prune/remove/repackage/update)
+
+        vagrant box list
+
+
+# K3S commands:
+
 kubectl, crictl, ctr, k3s-uninstall.sh k3s-killall.sh
 
 - kubectl get nodes -o wide
