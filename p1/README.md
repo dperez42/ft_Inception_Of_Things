@@ -42,11 +42,17 @@ TIPS:
 
 ## USE:
 
-> vagrant up
+        vagrant up
 
-Enter in the vm server with `vagrant ssh dperez-zS'
+Enter in the vm server with:
 
-and see the status of the K3s cluster with 'kubectl get nodes -o wide', you will see the two vm machines.
+        vagrant ssh dperez-zS
+
+and see the status of the K3s cluster with:
+
+        kubectl get nodes -o wide'
+        
+you will see the two vm machines.
 
 
 ## CHEATSHEET:
@@ -55,19 +61,19 @@ and see the status of the K3s cluster with 'kubectl get nodes -o wide', you will
 
 to enter via SSH. Also to see ssh configuration (vagrant ssh-config vm_name)
 
-> vagrant ssh vm_name
+        vagrant ssh vm_name
 
 to create a default Vagranfile
 
-> vagrant init
+        vagrant init
 
 to run provision script on a running vm
 
-> vagrant provision
+        vagrant provision
 
 to list the boxes loaded in the system. other commands(vagrant box add/list/outdated/prune/remove/repackage/update)
 
-> vagrant box list
+        vagrant box list
 
 
 # K3S comands:
@@ -75,7 +81,8 @@ to list the boxes loaded in the system. other commands(vagrant box add/list/outd
 kubectl, crictl, ctr, k3s-uninstall.sh k3s-killall.sh
 
 In server node:
-> kubectl get nodes -o wide
+
+        kubectl get nodes -o wide
 
 NAME         STATUS   ROLES                  AGE     VERSION
 
@@ -83,7 +90,8 @@ dperez-zsw   Ready    <none>                 3m41s   v1.27.7+k3s2
 
 dperez-zs    Ready    control-plane,master   11m     v1.27.7+k3s2
 
-> ifconfig eth1
+
+        ifconfig eth1
 
 eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 192.168.56.247  netmask 255.255.255.0  broadcast 192.168.56.255
@@ -95,7 +103,7 @@ eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 
 In agent node:
 
-> ifconfig eth1
+        ifconfig eth1
 
 eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 192.168.56.248  netmask 255.255.255.0  broadcast 192.168.56.255
@@ -104,6 +112,8 @@ eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 857  bytes 140791 (137.4 KiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+Others comands:
 
 - kubectl get all
 - kubectl get ns
@@ -115,7 +125,7 @@ eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 
 launch a command in a deployment:
 
-- kubectl exec deploy/mysql-deployment command
+- kubectl exec deploy/mysql-deployment 
 
 For enter in a pod
 
@@ -124,8 +134,6 @@ For enter in a pod
 Kill process in deployments
 
 - kubectl exec deploy/nginx-deployment -- pkill nginx
-
-
 
 ## ERRORS:
 
