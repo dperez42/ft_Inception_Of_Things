@@ -10,9 +10,7 @@ This project consists of multiple parts.
 
 >Part three synchronizes github repository and kubernetes' running app with argo-cd's automated sync.
 
->The bonus part synchronizes gitlab repository and kubernetes' running app via gitlab CI/CD pipeline and argo-cd's manual sync
-
-All running in a Virtual Machine
+All running in a Virtual Machine, in my case UBUNTU
 
 # Ubuntu Virtual Machine:
 
@@ -28,7 +26,7 @@ Memoría de video: 128MB
 Red: NAT
 Almacenamiento: 30 GB
 
-to enable nested virtualization, DO IT WITH VM STOPPED
+to enable nested virtualization, (DO IT WITH VM STOPPED)
 >VBoxManage modifyvm VM.name --nested-hw-virt on
 
 Install Git
