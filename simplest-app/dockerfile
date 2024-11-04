@@ -1,0 +1,9 @@
+# docker build -t dockerize-vuejs-app .
+# docker run -it -p 8080:80 --rm --name vuejs-app-1 dockerize-vuejs-app
+
+FROM nginx:1.13.12-alpine
+
+COPY index.html /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

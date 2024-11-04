@@ -16,10 +16,12 @@ spec:
     spec:
       containers:
         - name: app3
-          image: danipe1970/app2:latest
+          image: danipe1970/app2:v0
+          #image: paulbouwer/hello-kubernetes:1.10
           env:
           - name: MESSAGE
             value: "Hello from app2."
           #imagePullPolicy: Always
           ports:
            - containerPort: 80
+           #- containerPort: 8080

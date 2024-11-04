@@ -13,7 +13,7 @@ printf "\e[1;36m[K3S]🐳 : Installing K3S. IP: $1, TOKEN: $2 \n\e[0m"
 curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --flannel-iface eth1 --node-ip $1 --token $2" sh -s -
 sleep 3
 
-printf "\e[1;36m[SETUP ALIAS] : created aliases for all machine users \n\e[0m"
+printf "\e[1;35m[SETUP ALIAS] : created aliases for all machine users \n\e[0m"
 ### https://askubuntu.com/questions/610052/how-can-i-preset-aliases-for-all-users
 # 1º Method.
 echo "alias k='kubectl'" >> .bashrc
@@ -23,7 +23,7 @@ source ~/.bashrc # reload .bashrc to get new aliases, 'source ~/.bashrc' = '. ~/
 # add alias for kubectl command
 #echo "alias e='echo'" > /etc/profile.d/00.aliases.sh
 
-printf "\e[1;35m[KUBECTL]🌈 : kubectl -> k \n\e[0m "
+printf "\e[1;35m[KUBECTL]🌈 : kubectl -> k \n\e[0m"
 
 #DEPLOY DEPLOYS
 printf "\e[1;36m[K3S]🐳 : Deploying deploys  \n\e[0m"

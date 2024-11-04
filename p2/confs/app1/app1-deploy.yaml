@@ -17,6 +17,7 @@ spec:
       containers:
         - name: app1
           image: danipe1970/app1:v0
+          #image: paulbouwer/hello-kubernetes:1.10
           env:
           - name: MESSAGE
             value: "Hello from app1."
@@ -27,3 +28,4 @@ spec:
           #      - /live/isalivenginx.sh
           ports:
             - containerPort: 80
+            #- containerPort: 8080
